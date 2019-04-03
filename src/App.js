@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import FriendsList from "./components/FriendsList";
+import FriendsForm from "./components/FriendsForm";
+import Friend from "./components/Friend";
+import Home from "./components/Home";
 
 class App extends Component {
   constructor() {
@@ -12,10 +15,17 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    axios.get();
-    this.setState({
-      friends: []
-    });
+    axios
+      .get("http://localhost:5000/friends")
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+        // console.log(res);
+      })
+      .catch(err => {
+        console.log("Something bad happened..", err);
+      });
   }
 
   render() {
@@ -23,10 +33,27 @@ class App extends Component {
       <div>
         <header>
           <ul>
-            <NavLink to="/">Home</NavLink>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+            <NavLink to="/add-friend">Add Friend</NavLink>
           </ul>
         </header>
-        <FriendsList />
+        <Route exact path="/" component={Home} />
+        <Route
+          path="/friends-list"
+          render={() => <FriendsList friends={this.state.friends} />}
+        />
+        <Route
+          path="/friend-list/:friendsid-friend_info"
+          render={props => <Friend friends={this.state.friends} {...props} />}
+        />
+        <Route
+          path="/friend-list/addfriend"
+          render={props => (
+            <FriendsForm friends={this.state.friends} {...props} />
+          )}
+        />
       </div>
     );
   }
