@@ -48,12 +48,7 @@ class App extends Component {
           path="/friend-list/:friendsid-friend_info"
           render={props => <Friend friends={this.state.friends} {...props} />}
         />
-        <Route
-          path="/friend-list/addfriend"
-          render={props => (
-            <FriendsForm friends={this.state.friends} {...props} />
-          )}
-        />
+        <Route path="/add-friend" component={FriendsForm} />
       </div>
     );
   }

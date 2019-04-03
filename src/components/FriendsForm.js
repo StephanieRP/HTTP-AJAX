@@ -13,14 +13,24 @@ export default class FriendsForm extends Component {
   render() {
     return (
       <form>
-        <div class="form-group">
-          <input type="text" name="name" value="" />
+        <div>
+          <input
+            type="text"
+            name="name"
+            value={this.state.name}
+            placeholder="Name"
+          />
         </div>
         <div>
-          <input type="text" name="" value="" />
+          <input
+            type="number"
+            name="age"
+            value={this.state.age}
+            placeholder="Name"
+          />
         </div>
         <div>
-          <input type="text" name="" value="" />
+          <input type="email" name="email" value={this.state.email} />
         </div>
         <button type="submit">Submit</button>
       </form>
