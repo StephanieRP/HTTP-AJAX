@@ -1,4 +1,5 @@
 import React from "react";
+import * as style from "../styles/homestyle";
 
 const Home = props => {
   const seeFriends = e => {
@@ -6,12 +7,12 @@ const Home = props => {
     props.history.push("/friends-list");
   };
   return (
-    <div>
+    <style.HomeStyle>
       <div className="main-container">
         <h1> Welcome </h1>
         <button onClick={seeFriends}>See my current friends</button>
       </div>
-    </div>
+    </style.HomeStyle>
   );
 };
 

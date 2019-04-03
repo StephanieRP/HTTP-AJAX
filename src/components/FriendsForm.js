@@ -26,11 +26,16 @@ export default class FriendsForm extends Component {
             type="number"
             name="age"
             value={this.state.age}
-            placeholder="Name"
+            placeholder="Age"
           />
         </div>
         <div>
-          <input type="email" name="email" value={this.state.email} />
+          <input
+            type="email"
+            name="email"
+            value={this.state.email}
+            placeholder="Email"
+          />
         </div>
         <button type="submit">Submit</button>
       </form>

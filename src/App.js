@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Reset } from "styled-reset";
 import { Route, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
@@ -6,6 +7,8 @@ import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
 import Friend from "./components/Friend";
 import Home from "./components/Home";
+import styled from "styled-components";
+import * as style from "./styles/header";
 
 class App extends Component {
   constructor() {
@@ -31,14 +34,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>
+        <Reset />
+        <style.Header>
           <ul>
-            <NavLink exact to="/">
+            <NavLink activeClassName="active" exact to="/">
               Home
             </NavLink>
-            <NavLink to="/add-friend">Add Friend</NavLink>
+            <NavLink activeClassName="active" to="/add-friend">
+              Add Friend
+            </NavLink>
           </ul>
-        </header>
+        </style.Header>
         <Route exact path="/" component={Home} />
         <Route
           path="/friends-list"
