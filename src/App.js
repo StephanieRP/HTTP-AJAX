@@ -3,6 +3,7 @@ import { Reset } from "styled-reset";
 import { Route, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
+import Footer from "./components/Footer";
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
 import Friend from "./components/Friend";
@@ -55,6 +56,7 @@ class App extends Component {
           render={props => <Friend friends={this.state.friends} {...props} />}
         />
         <Route path="/add-friend" component={FriendsForm} />
+        {/* <Footer /> */}
       </div>
     );
   }

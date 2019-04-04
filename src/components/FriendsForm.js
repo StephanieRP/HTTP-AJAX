@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
+import * as style from "../styles/friends-style";
 export default class FriendsForm extends Component {
   constructor() {
     super();
@@ -10,15 +11,22 @@ export default class FriendsForm extends Component {
       email: ""
     };
   }
+
+  inputHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
   render() {
     return (
-      <form>
+      <style.FriendsForm>
         <div>
           <input
             type="text"
             name="name"
             value={this.state.name}
             placeholder="Name"
+            onChange={this.inputHandler}
           />
         </div>
         <div>
@@ -27,6 +35,7 @@ export default class FriendsForm extends Component {
             name="age"
             value={this.state.age}
             placeholder="Age"
+            onChange={this.inputHandler}
           />
         </div>
         <div>
@@ -35,10 +44,22 @@ export default class FriendsForm extends Component {
             name="email"
             value={this.state.email}
             placeholder="Email"
+            onChange={this.inputHandler}
           />
         </div>
         <button type="submit">Submit</button>
-      </form>
+      </style.FriendsForm>
     );
   }
 }
+
+FriendsForm.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      age: PropTypes.number,
+      email: PropTypes.string
+    })
+  )
+};

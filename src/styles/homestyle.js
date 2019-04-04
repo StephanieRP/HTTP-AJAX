@@ -11,7 +11,8 @@ export const HomeStyle = styled.div`
     }
     button {
       outline: none;
-      background: red;
+      background: #333333;
+      font-weight: bold;
       color: white;
       border-radius: 6px;
       padding: 0.5rem;
@@ -19,6 +20,10 @@ export const HomeStyle = styled.div`
       display: block;
       font-size: 1.5rem;
       cursor: pointer;
+      &:hover {
+        background: #edafb8;
+        color: black;
+      }
     }
   }
 `;

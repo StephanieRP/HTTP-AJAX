@@ -3,36 +3,36 @@ import styled from "styled-components";
 
 export const FriendListStyle = styled.div`
   h2 {
-    font-size: 2rem;
-    text-decoration: underline;
+    font-size: 2.6rem;
+    ${"" /* text-decoration: underline; */}
     text-align: center;
-    padding-top: 0.5rem;
+    padding: 1rem 0;
   }
 `;
 
 export const FriendsStyle = styled.div`
 
 div {
-    width: 20%;
+    width: 50%;
     margin: 0 auto;
 
   a {
     text-decoration: none;
     cursor: pointer;
-    background: blue;
+    background: #95b8d1;
     text-align: center
     display: block;
     color: white;
-    margin: 1rem 0;
 
 
     &:hover {
-      background: red;
-    }
+        background: #edafb8;
+        color: black;
+      }
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 1rem;
     /* background: black; */
   }
@@ -41,30 +41,82 @@ div {
 
 export const IndvidFriend = styled.div`
   width: 50%;
-  margin: 2rem auto;
+  margin: 5rem auto;
   text-align: center;
 
   div {
     font-size: 2rem;
-    background: blue;
+    background: #95b8d1;
     color: white;
     padding: 2rem;
     margin-bottom: 5rem;
+    border-radius: 5px;
+
     h2,
     p {
       margin: 1rem 0;
+      font-weight: bold;
       &:hover {
-        color: yellow;
+        color: #e8ddb5;
       }
     }
   }
   a {
     text-decoration: none;
-    background: green;
+    background: #333333;
     padding: 1rem;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      background: #edafb8;
+      color: black;
+    }
+  }
+`;
+
+export const FriendsForm = styled.div`
+  width: 70%;
+  margin: 2rem auto;
+  background: #95b8d1;
+  padding: 3rem;
+  border-radius: 5px;
+  div {
+    width: 70%;
+    margin: 1rem auto;
+
+    input {
+      width: 100%;
+      padding: 2rem;
+      margin: 0.8rem auto;
+      font-size: 1.5rem;
+      outline: none;
+
+      &::placeholder {
+        color: #333333;
+      }
+
+      &:focus {
+        border: 0.5px solid #333333;
+      }
+    }
+  }
+  button {
+    outline: none;
+    background: #333333;
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin: 2rem auto;
+    display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
+    &:hover {
+      background: #edafb8;
+      color: black;
+    }
   }
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import Friends from "./Friends";
 import * as style from "../styles/friends-style";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 function FriendsList(props) {
   // const { friends } = props.data;
@@ -16,6 +16,15 @@ function FriendsList(props) {
   );
 }
 
-FriendsList.propTypes = {};
+FriendsList.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      age: PropTypes.number,
+      email: PropTypes.string
+    })
+  )
+};
 
 export default FriendsList;

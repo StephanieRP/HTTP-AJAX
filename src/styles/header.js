@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Header = styled.div`
-  background: green;
+  background: #95b8d1;
   padding: 1rem;
 
   ul {
@@ -10,15 +10,19 @@ export const Header = styled.div`
     justify-content: space-between;
   }
   .active {
-    color: red;
+    color: #edafb8;
   }
   a {
     text-decoration: none;
     font-size: 1.5rem;
     color: white;
-    background: blue;
+    background: #333333;
     padding: 0.5rem;
     border-radius: 5px;
     font-weight: bold;
+    &:hover {
+      background: #edafb8;
+      color: black;
+    }
   }
 `;

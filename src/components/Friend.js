@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as style from "../styles/friends-style";
 
 const Friend = props => {
-  console.log("Friend", props);
+  // console.log("Friend", props);
   const friends = props.friends.find(friend => {
     return `${friend.id}` === props.match.params.friendsid;
   });
@@ -22,6 +22,15 @@ const Friend = props => {
   );
 };
 
-Friend.propTypes = {};
+Friend.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      age: PropTypes.number,
+      email: PropTypes.string
+    })
+  )
+};
 
 export default Friend;
