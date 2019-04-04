@@ -10,7 +10,11 @@ function FriendsList(props) {
       <h2> Friends List </h2>
 
       {props.friends.map(friend => (
-        <Friends key={friend.id} friends={friend} />
+        <Friends
+          key={friend.id}
+          friends={friend}
+          removeFriend={props.removeFriend}
+        />
       ))}
     </style.FriendListStyle>
   );

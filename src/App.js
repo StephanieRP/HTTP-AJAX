@@ -8,14 +8,14 @@ import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
 import Friend from "./components/Friend";
 import Home from "./components/Home";
-import styled from "styled-components";
 import * as style from "./styles/header";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      active: null
     };
   }
   componentDidMount() {
@@ -31,6 +31,61 @@ class App extends Component {
         console.log("Something bad happened..", err);
       });
   }
+
+  addFriend = newFriend => {
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  editFriend = editFriend => {
+    axios
+      .put(`http://localhost:5000/friends/${editFriend.friendsid}`, editFriend)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  removeFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({
+          friends: res.data,
+          deleteMessage: "Successfully removed friend :(",
+          deleteError: ""
+        });
+        console.log(res);
+      })
+      .catch(err => {
+        this.setState({
+          deleteError: "Something went wrong, try again",
+          deleteMessage: ""
+        });
+        console.log(err);
+      });
+  };
+
+  activeFriend = friend => {
+    this.setState({
+      active: friend
+    });
+  };
 
   render() {
     return (
@@ -49,13 +104,36 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route
           path="/friends-list"
-          render={() => <FriendsList friends={this.state.friends} />}
+          render={() => (
+            <FriendsList
+              friends={this.state.friends}
+              removeFriend={this.removeFriend}
+            />
+          )}
         />
         <Route
           path="/friend-list/:friendsid-friend_info"
-          render={props => <Friend friends={this.state.friends} {...props} />}
+          render={props => (
+            <Friend
+              friends={this.state.friends}
+              {...props}
+              editFriend={this.editFriend}
+              activeFriend={this.activeFriend}
+            />
+          )}
         />
-        <Route path="/add-friend" component={FriendsForm} />
+        <Route
+          path="/add-friend"
+          render={props => (
+            <FriendsForm
+              friends={this.state.friends}
+              {...props}
+              addFriend={this.addFriend}
+              errorMessage={this.state.errorMessage}
+              successMessage={this.state.successMessage}
+            />
+          )}
+        />
         {/* <Footer /> */}
       </div>
     );
