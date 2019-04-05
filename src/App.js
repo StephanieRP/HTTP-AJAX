@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
 import Friend from "./components/Friend";
+import UpdateForm from "./components/UpdateForm";
 import Home from "./components/Home";
 import * as style from "./styles/header";
 
@@ -15,7 +16,7 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      active: null
+      activeFriend: null
     };
   }
   componentDidMount() {
@@ -47,9 +48,9 @@ class App extends Component {
       });
   };
 
-  editFriend = editFriend => {
+  editFriend = friend => {
     axios
-      .put(`http://localhost:5000/friends/${editFriend.friendsid}`, editFriend)
+      .put(`http://localhost:5000/friends/${friend.id}`, friend)
       .then(res => {
         this.setState({
           friends: res.data
@@ -82,9 +83,7 @@ class App extends Component {
   };
 
   activeFriend = friend => {
-    this.setState({
-      active: friend
-    });
+    this.setState({ activeFriend: friend });
   };
 
   render() {
@@ -134,7 +133,17 @@ class App extends Component {
             />
           )}
         />
-        {/* <Footer /> */}
+
+        <Route
+          path="/edit"
+          render={props => (
+            <UpdateForm
+              editFriend={this.editFriend}
+              activeFriend={this.state.activeFriend}
+              {...props}
+            />
+          )}
+        />
       </div>
     );
   }

@@ -14,6 +14,7 @@ function FriendsList(props) {
           key={friend.id}
           friends={friend}
           removeFriend={props.removeFriend}
+          activeFriend={props.activeFriend}
         />
       ))}
     </style.FriendListStyle>
