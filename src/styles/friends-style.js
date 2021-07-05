@@ -13,16 +13,21 @@ export const FriendListStyle = styled.div`
 export const FriendsStyle = styled.div`
 
 div {
-    width: 50%;
-    margin: 0 auto;
+    justify-content: center;
+    align-content: center
+    display: flex;
+
 
   a {
     text-decoration: none;
     cursor: pointer;
     background: #95b8d1;
     text-align: center
-    display: block;
     color: white;
+    padding: 1rem 5rem;
+    width: 40%;
+
+    
 
 
     &:hover {
@@ -33,9 +38,19 @@ div {
 
   h3 {
     font-size: 2rem;
-    padding: 1rem;
-    /* background: black; */
   }
+  span {
+    background: #edafb8;
+   text-align: center;
+    color: #333333;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+        background: #333333;
+        color: #edafb8;
+      }
+
+ }
 }
 `;
 
@@ -67,8 +82,7 @@ export const IndvidFriend = styled.div`
     padding: 1rem;
     border-radius: 5px;
     color: white;
-    cursor: pointer;
-    text-transform: uppercase;
+    ctext-transform: uppercase;
     font-weight: bold;
 
     &:hover {

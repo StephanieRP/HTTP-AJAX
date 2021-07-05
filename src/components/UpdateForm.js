@@ -1,40 +1,36 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import * as style from "../styles/friends-style";
-export default class FriendsForm extends Component {
+// import * as style from "../styles/friends-style";
+export default class UpdateForm extends Component {
   state = {
-    name: "",
-    age: "",
-    email: ""
+    friend: this.props.activeFriend
   };
 
   inputHandler = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    e.persist();
+    this.setState(prevState => ({
+      friend: {
+        ...prevState.friend,
+        [e.target.name]: e.target.value
+      }
+    }));
   };
 
   submitHandler = e => {
     e.preventDefault();
-    const friend = { ...this.state };
-    this.props.addFriend(friend);
-
-    this.setState({
-      name: "",
-      age: "",
-      email: ""
-    });
+    this.props.editFriend(this.state.friend);
     this.props.history.push("/friends-list");
   };
   render() {
     console.log(this.props);
+    const { name, age, email } = this.state;
     return (
-      <style.FriendsForm>
+      <form onSubmit={this.submitHandler}>
         <div>
           <input
             type="text"
             name="name"
-            value={this.state.name}
+            value={name}
             placeholder="Name"
             onChange={this.inputHandler}
           />
@@ -43,31 +39,30 @@ export default class FriendsForm extends Component {
           <input
             type="number"
             name="age"
-            value={this.state.age}
+            value={age}
             placeholder="Age"
             onChange={this.inputHandler}
           />
         </div>
         <div>
           <input
-            type="text"
+            type="email"
             name="email"
-            value={this.state.email}
+            value={email}
             placeholder="Email"
             onChange={this.inputHandler}
           />
         </div>
-        <button type="submit" onClick={this.submitHandler}>
-          Submit
-        </button>
-      </style.FriendsForm>
+        <button type="submit">Submit</button>
+      </form>
     );
   }
 }
 
-FriendsForm.propTypes = {
+UpdateForm.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number,
       name: PropTypes.string,
       age: PropTypes.number,
       email: PropTypes.string
